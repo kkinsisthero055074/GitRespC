@@ -294,43 +294,85 @@ void Switch()
 //循环语句
 void Loop()
 {
-// 	int num;
-// 	for (int i = 1; i < 11; i++)
-// 	{
-// 		printf("%d\n", i);
-// 
-// 		for (int j = 0; j < 5; j++)
-// 		{
-// 			num = 10 * i + j;
-// 			if (num > 60)
-// 			{
-// 				break;
-// 			}
-// 			printf("%d\t", num);
-// 			
-// 		}
-// 		printf("\n");	
-// 	}
-// 	//说明：break在循环语句中是跳出本层循环
+	int num;
+	for (int i = 1; i < 11; i++)
+	{
+		printf("%d\n", i);
 
-// 	int i = 1;
-// 
-// 	while (i <= 10)
-// 	{
-// 		i++;
-// 		if(i==5)
-// 			continue;
-// 		printf("%d", i);
-// 		
-// 	}
-// 	//continue是跳出本次循环后面的代码，进入下一个循环
+		for (int j = 0; j < 5; j++)
+		{
+			num = 10 * i + j;
+			if (num > 60)
+			{
+				break;
+			}
+			printf("%d\t", num);
+			
+		}
+		printf("\n");	
+	}
+	//说明：break在循环语句中是跳出本层循环
 
-	char password[20] = { 0 };
-	printf("input the password:");
-	scanf_s("%s", password);
-	printf("%s", password);
+	int i = 1;
 
+	while (i <= 10)
+	{
+		i++;
+		if(i==5)
+			continue;
+		printf("%d", i);
+		
+	}
+	//continue是跳出本次循环后面的代码，进入下一个循环	
+}
+
+
+void ClearBuf() //万能清空缓存区
+{
+	int ch;
+	while ((ch = getchar()) != EOF && ch != '\n')
+	{
+		;
+	}
+}
+
+
+void Character()
+{
+	//1 字符串的输出
+	char str[] = "kkinsisthero055074\\nddf";
+	printf("%s\n", str);//方式1
+	puts(str);//方式2输出字符串并且自动换行
+
+	//2 字符串的输入
+	//为了防止输入的内容大于变量的字符组数-1,造成多余的字符写到堆栈中，覆盖原先的内容，建议使用scanf_s("%s",str,n-1)和ggets_s(str,n-1)函数
+	char str2[8] = { 0 };
+	char str3[8] = { 0 };
+	printf("input a string:\n");
+	scanf_s("%s", str2,7); //1 利用scanf_s("%s",str,n-1)函数输入(预留\0)
+						   //超出规定输入的字符数，不存储,不报错
+						   //scanf_s()函数只拿走输入字符数\0拿不走，所以要是不清理缓存，会直接跳过下一步输入直接对变量赋值
+							
+	ClearBuf();//清空缓存区,scanf_s后面带着
+
+
+
+
+	printf("input a string:\n");
+	gets_s(str3, 7);//2 利用gets_s("%s",str,n-1)函数输入(预留\0)；
+				   //超出规定输入的字符数，直接会报错
+				 //gets_s(str,n-1)会拿走输入字符加上\0，所以不清理缓存也可以
+
+	char ch;
+	printf("input again\n");
+	ch = getchar();
+
+	printf("%s\n", str2);
+	printf("%s\n", str3);
+	printf("%c\n", ch);
 	
+
+		
 }
 
 
@@ -347,7 +389,8 @@ int main()
 	//Struct();
 	//IfEsle();
 	//Switch();
-	Loop();
+	//Loop();
+	Character();
 	
 
 	return 0;
