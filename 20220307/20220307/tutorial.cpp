@@ -225,11 +225,115 @@ void Struct()
 	printf("%s %d %f\n", s1.name, s1.age, s1.score);
 	
 	struct Student* pa = &s1;
+	//结构体指针
 	printf("%s %d %f\n", pa->name, pa->age,pa->score);
 
+	struct Student* pb = &s1;
+	printf("%s %d %f\n", (*pb).name, (*pb).age, (*pb).score);
 
+	char str[10] = "kkini";
+	printf("%s\n", str);
 
+	char strb[10] = "change";
+	strcpy(str, strb);	
+	printf("%s\n", str);
+	//使用函数strcpy(字符数组名,字符数组名)来改变字符数组的内容
+	   	  
 }
+
+//分支语句if else
+void IfEsle()
+{
+	int a = 0;
+	int b = 2;
+	if (a == 1)
+		if (b == 2)
+		{
+			printf("hehe\n");
+		}			
+		else
+		{
+			printf("haha\n");
+		}
+			
+}
+//结果什么都没打印，因为else会自动和最近的if的联系
+
+
+//分支语句switch
+void Switch()
+{
+	int n = 1;
+	int m = 2;
+	
+	switch (n)
+	{
+	case 1:m++;
+	case 2:n++;
+	case 3:
+		switch (n)
+		{
+		case 1:
+			n++;
+		case 2:
+			m++;
+			n++;
+			break;
+		}
+	case 4:
+		m++;
+		break;
+	default:
+		break;
+	}
+	printf("m=%d,n=%d\n", m, n);
+}
+//输出结果为：5,3 break是跳出本层循环或者分支语句
+
+
+//循环语句
+void Loop()
+{
+// 	int num;
+// 	for (int i = 1; i < 11; i++)
+// 	{
+// 		printf("%d\n", i);
+// 
+// 		for (int j = 0; j < 5; j++)
+// 		{
+// 			num = 10 * i + j;
+// 			if (num > 60)
+// 			{
+// 				break;
+// 			}
+// 			printf("%d\t", num);
+// 			
+// 		}
+// 		printf("\n");	
+// 	}
+// 	//说明：break在循环语句中是跳出本层循环
+
+// 	int i = 1;
+// 
+// 	while (i <= 10)
+// 	{
+// 		i++;
+// 		if(i==5)
+// 			continue;
+// 		printf("%d", i);
+// 		
+// 	}
+// 	//continue是跳出本次循环后面的代码，进入下一个循环
+
+	char password[20] = { 0 };
+	printf("input the password:");
+	scanf_s("%s", password);
+	printf("%s", password);
+
+	
+}
+
+
 
 int main()
 {
@@ -240,8 +344,11 @@ int main()
 	//Key();
 	//Define();
 	//Pointer();
-	Struct();
-
+	//Struct();
+	//IfEsle();
+	//Switch();
+	Loop();
+	
 
 	return 0;
 }
