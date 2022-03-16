@@ -425,8 +425,24 @@ void loopFor()
 	}
 	//”Ôæ‰—≠ª∑0¥Œ
 
+}
 
+void DoWhile()
+{
+	long sumI=0;
+	long sumJ;
+	
+	for (int i = 1; i < 11; i++)
+	{
+		sumJ = 1;
+		for (int j = 1; j <= i; j++)
+		{
+			sumJ = sumJ * j;
+		}
+		sumI = sumJ + sumI;
+	}
 
+	printf("the sum is %ld\n", sumI);
 }
 	
 
@@ -445,7 +461,8 @@ int main()
 	//Loop();
 	//Character();
 	//ChossenIf();
-	loopFor();
+	//loopFor();
+	DoWhile();
 	
 
 	return 0;
