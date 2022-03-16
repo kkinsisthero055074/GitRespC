@@ -329,7 +329,7 @@ void Loop()
 
 void ClearBuf() //万能清空缓存区
 {
-	int ch;
+	int ch;//返回的是数值不一定是字符，例如EOF返回-1
 	while ((ch = getchar()) != EOF && ch != '\n')
 	{
 		;
@@ -352,6 +352,7 @@ void Character()
 	scanf_s("%s", str2,7); //1 利用scanf_s("%s",str,n-1)函数输入(预留\0)
 						   //超出规定输入的字符数，不存储,不报错
 						   //scanf_s()函数只拿走输入字符数\0拿不走，所以要是不清理缓存，会直接跳过下一步输入直接对变量赋值
+							//scanf_s()函数遇到空格，回车，EOF会停止输入
 							
 	ClearBuf();//清空缓存区,scanf_s后面带着
 
@@ -362,6 +363,7 @@ void Character()
 	gets_s(str3, 7);//2 利用gets_s("%s",str,n-1)函数输入(预留\0)；
 				   //超出规定输入的字符数，直接会报错
 				 //gets_s(str,n-1)会拿走输入字符加上\0，所以不清理缓存也可以
+			      //gets_s(str,n-1)遇到空格也会继续输入
 
 	char ch;
 	printf("input again\n");
@@ -369,13 +371,64 @@ void Character()
 
 	printf("%s\n", str2);
 	printf("%s\n", str3);
-	printf("%c\n", ch);
-	
+	printf("%c\n", ch);	
+			
+}
 
+// if() else if() else{}选择语句
+void ChossenIf()
+{
+	char password[20] = { 0 };
+	printf("input the password:\n");
+	gets_s(password, 19);//可以输入空格
+	printf("%s\n", password);
+
+	printf("confirm password (Y/N)\n");
+	int ch = getchar(); //说明gets_s(str,n-1)带走了缓存区的\0
+	if (ch == 'Y')
+	{
+		printf("success!\n");
+	}
+	else if (ch == 'N')
+	{
+		printf("fail!\n");
+	}
+	else 
+	{
+		printf("wrong input\n");
+	}
 		
 }
 
+//for循环语句
+void loopFor()
+{
+	for (int i = 1; i < 11; i++)
+	{
+		if (i == 5)
+			continue; //跳过下面语句进行下一个循环
+		if (i == 7)
+			break;  //直接退出本层循环
+		printf("%d ",i);
+	}
+	printf("\n");
 
+	int j = 0;
+	int k = 0;
+	int m = 1;
+	for (j = 0, k = 0; k = 0; j++, k++)
+	{
+		k++;
+		printf("%d", m);
+		m++;
+		printf("%d ", k);
+	}
+	//语句循环0次
+
+
+
+}
+	
 
 int main()
 {
@@ -390,7 +443,9 @@ int main()
 	//IfEsle();
 	//Switch();
 	//Loop();
-	Character();
+	//Character();
+	//ChossenIf();
+	loopFor();
 	
 
 	return 0;
