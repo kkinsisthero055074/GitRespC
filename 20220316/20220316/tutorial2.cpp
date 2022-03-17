@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
+#include <time.h>
 
 //案例1：编写代码演示多个字符从两端移动，向中间汇聚
 void case1()
@@ -94,12 +96,23 @@ void case2p1()
 	char password[] = { "#123A" };
 	char password2[20] = { 0 };
 
-	for (int i = 0; i < 3; i++)
+	
+	
+	if (-10)
+		printf("-1\n");
+	if (0)
+		printf("0\n");
+	if (20)
+		printf("1\n");
+	//上面案例说明添加语句返回值不为0即为真，if(条件非0即为真)
+
+
+	for (int i = 1; i < 4; i++)
 	{
 		printf("input your password!\n");
 		gets_s(password2, 19);
 
-		if (strcmp(password2, password) == 0)
+		if (strcmp(password2, password) == 0)//strcmp(str1,str2);字符串标比较函数，返回值<0,>0,=0(说明两个字符串相同)
 		{
 			printf("log in successfully!\n");
 			break;
@@ -110,20 +123,127 @@ void case2p1()
 			printf("more than 3 times!\n");
 			break;
 		}
-	}
-		
-
-
-	
-
-
-
-		
+	}		
 	
 }
 
 
+
+//案例3： 写一个猜数字游戏
+//1. 自动产生一个1-100之间的随机数；
+//2 猜数字
+//a 猜对了，就恭喜你，游戏结束
+//b猜错了，会告诉你大了还是小了，继续猜，知道猜对
+//3 这个游戏可以一直玩，除非退出游戏
+void case3()
+{
+	srand((unsigned)time(NULL));//随机函数随着时间变化
+	int num = rand() % 100;
+	int numA;
+	while (1)
+	{
+		printf("input your num：if you want to quit, input Q!\n");
+		if (getchar() == 'Q')
+		{
+			printf("quite sucessfuly!\n");
+			break;
+		}
+		scanf_s("%d", &numA, 1);
+		
+		if (numA > num)
+		{
+			printf("the number you input is bigger!\n");
+			continue;
+		}
+		else if (numA < num)
+		{
+			printf("the number you input is smaller!\n");
+			continue;
+		}
+		else
+		{
+			printf("congratulation! right!\n");
+			break;
+		}
+	}
 	
+}
+
+
+//输入10个数，从小到大排序
+
+void case4()
+{
+	int num[10];
+	int temp;
+
+	for (int i = 0; i < 10; i++)
+	{
+		printf("input %d number:\n", i +1 );
+		scanf_s("%d", &num[i]);
+	}//输入10个数字
+
+	//排序
+	for (int i = 0; i < 9; i++)
+	{
+		for (int j = i + 1; j < 10; j++)
+		{
+			if (num[i] > num[j])
+			{
+				temp = num[i];
+				num[i] = num[j];
+				num[j] = temp;
+			}
+		}
+	}
+
+	//输出结果
+	for (int i = 0; i < 10; i++)
+	{
+		printf("%d ", num[i]);
+	}
+
+}
+
+//打印1-100之间所有3的倍数
+void case5()
+{
+	for (int i = 1; i < 101; i++)
+	{
+		if (i % 3 == 0)
+		{
+			printf("%d ", i);
+		}
+	}
+	printf("\n");
+
+}
+
+//打印两个数的最大公约数
+void case6()
+{
+	int a, b;
+	int min;
+	printf("input two integers:\n");
+	scanf_s("%d %d", &a, &b);
+
+	min = a;
+	if (a > b)
+	{
+		min = b;
+	}
+
+	int num = 1;//最大公约数
+	for (int i = 1; i < min + 1; i++)
+	{
+		if (a%i == 0 && b%i == 0)
+		{
+			num = i;
+		}
+	}
+
+	printf("greatest common divisor of %d and %d is %d\n", a, b, num);
+}
 
 
 
@@ -131,7 +251,11 @@ int main()
 {
 	//case1();
 	//case2();
-	case2p1();
+	//case2p1();
+	//case3();
+	//case4();
+	//case5();
+	case6();
 	
 
 	return 0;
