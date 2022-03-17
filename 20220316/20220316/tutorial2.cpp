@@ -34,55 +34,62 @@ void case1()
 	printf("the num is %d\n", num); //输出结果为29 证明字符数组最后的结尾是\0
 }
 
-//案例2： 模拟用户登录，并且只能登录三次，如果密码正确则提示登录成功，如果三次输入错误则退出程序
+//案例2： 模拟用户登录，只能登录三次，满足三个条件1. 输入的字符数相同 2.字符数组中每个字符都相同
 void case2()
 {
 	char password[] = { "#KKgg6398" };
-	char password2[100] = { 0 };
-	int len = sizeof(password) / sizeof(char)-1;
 	int charNum = 9;
-		
+	char password2[20] = { 0 };
 
-	//分析需要满足两个条件才能登录：1. 输入字符数相同  2 每个字符数相同
-	int num = 0; //3 次数不超过三次
+
+
+
+	int logInNum = 0;//通过logInNum约束登录的次数
 	while (1)
 	{
 		printf("please input your password:\n");
-		gets_s(password2, 99);
+		gets_s(password2, 19);
 		//1.1 统计输入的字符数
 		int charNum2 = 0;
-		for (int i = 0; i < 99; i++)
+		for (int i = 0; i < 20; i++)
 		{
 			if (password2[i] == '\0')
+			{
 				break;
+			}
 			charNum2++;
 		}
 		
-		//2.1 通过equal判断每个字符是否相同
+
+		//2.1 通过equal判断每个字符是否都鞥相同
 		bool equal = 1;
-		for (int i = 0; i < charNum; i++)
+		for (int i = 0; i < 9; i++)
 		{
-			if (password[i] != password2[i])
+			if (password2[i] != password[i])
+			{
 				equal = 0;
+				break;
+			}
 		}
 
-		if (charNum == charNum2 && equal)//同时满足1 2
+		//同时满足1 2条件时
+		if (charNum == charNum2 && equal)
 		{
-			printf("long in successfully!\n");
-			break;
-		}
-		num++;
-
-		if (num > 2)
-		{
-			printf("more than 3 times! please try next time!\n");
+			printf("log in successfull!\n");
 			break;
 		}
 
+		logInNum++;
+		if (logInNum > 2)
+		{
+			printf("You have tried more than three times!\n");
+			break;
+		}
 
 	}
 
-	   
+
+
 }
 
 	
