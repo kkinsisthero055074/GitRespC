@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 //案例1：编写代码演示多个字符从两端移动，向中间汇聚
 void case1()
@@ -85,12 +86,42 @@ void case2()
 			printf("You have tried more than three times!\n");
 			break;
 		}
-
 	}
-
-
-
 }
+//案例2，使用string.h自带的strcmp(str1,str2)函数进行字符串比较
+void case2p1()
+{
+	char password[] = { "#123A" };
+	char password2[20] = { 0 };
+
+	for (int i = 0; i < 3; i++)
+	{
+		printf("input your password!\n");
+		gets_s(password2, 19);
+
+		if (strcmp(password2, password) == 0)
+		{
+			printf("log in successfully!\n");
+			break;
+		}
+
+		if (i == 3)
+		{
+			printf("more than 3 times!\n");
+			break;
+		}
+	}
+		
+
+
+	
+
+
+
+		
+	
+}
+
 
 	
 
@@ -99,7 +130,8 @@ void case2()
 int main()
 {
 	//case1();
-	case2();
+	//case2();
+	case2p1();
 	
 
 	return 0;
