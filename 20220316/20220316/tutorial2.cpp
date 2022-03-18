@@ -135,6 +135,7 @@ void case2p1()
 //a 猜对了，就恭喜你，游戏结束
 //b猜错了，会告诉你大了还是小了，继续猜，知道猜对
 //3 这个游戏可以一直玩，除非退出游戏
+
 void case3()
 {
 	srand((unsigned)time(NULL));//随机函数随着时间变化
@@ -171,7 +172,6 @@ void case3()
 
 
 //输入10个数，从小到大排序
-
 void case4()
 {
 	int num[10];
@@ -247,6 +247,7 @@ void case6()
 
 //打印1000到2000之间的闰年
 //闰年1 能被4 不能被100整除 2 能被400整除是闰年
+
 void case7()
 {
 	for (int i = 1000; i < 2051; i++)
@@ -320,6 +321,38 @@ again:
 	}
 }
 
+
+//使用官网查看库函数定义
+/*void * memset ( void * ptr, int value, size_t num );
+Fill block of memory
+Sets the first num bytes of the block of memory pointed by ptr to the specified value (interpreted as an unsigned char).*/
+void case11()
+{
+	char str[] = { "almost every programmer should know memset!" };
+	memset(str, '-', 10);
+	puts(str);
+
+	char str2[] = "hello you shoud try it again!";
+	memset(str2, 'X', 5);
+	puts(str2);
+}
+
+
+//写一个函数，实现一个整型有序数组的二分查找
+//找到返回下标值，找不到返回-1
+int case12(int *p,int value,int size)
+{
+
+	for (int i = 0; i < size; i++)
+	{
+		if (*(p + i) == value)
+			return i;
+	}
+	return -1;
+
+	return 0;
+}
+
 int main()
 {
 	//case1();
@@ -332,8 +365,30 @@ int main()
 	//case7();
 	//case8();
 	//case9();
-	case10();
-	
+	//case10();
+	//case11();
+
+	//case12();
+// 	int arr[20] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};	
+// 	int value;
+// 	printf("input the value:\n");
+// 	scanf_s("%d", &value);
+// 
+// 	int size = sizeof(arr) / sizeof(arr[0]);	
+// 	int key = case12(arr, value, size);//调用函数，地址传递
+// 	
+// 	if (key == -1)
+// 	{
+// 		printf("can not find the value!\n");
+// 	}
+// 	else
+// 	{
+// 		printf("the key is %d\n", key);
+// 	}
+
+
+
+
 
 	return 0;
 }
