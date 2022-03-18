@@ -245,7 +245,80 @@ void case6()
 	printf("greatest common divisor of %d and %d is %d\n", a, b, num);
 }
 
+//打印1000到2000之间的闰年
+//闰年1 能被4 不能被100整除 2 能被400整除是闰年
+void case7()
+{
+	for (int i = 1000; i < 2051; i++)
+	{
+		if (i % 400 == 0)
+		{
+			printf("%d ", i);
+		}
+		else if (i % 4==0 && i % 100 != 0)
+		{
+			printf("%d ", i);
+		}
+	}
+	printf("\n");
+}
 
+//打印100-200之间的素数
+void case8()
+{
+	for (int i = 100; i <= 200; i++)
+	{
+		int count = 0;
+		for (int j = 2; j < i ; j++)
+		{
+			if (i%j == 0)
+			{
+				count++;
+			}
+		}
+		if (count == 0)
+		{
+			printf("%d ",i);
+		}
+	}
+	printf("\n");
+}
+
+//乘法口诀表
+void case9()
+{
+	for (int i = 1; i <= 9; i++)
+	{
+		for (int j = 1; j <= i; j++)
+		{
+			printf("%d * %d = %d\t",j,i,i*j);
+		}
+		printf("\n");
+	}
+
+}
+
+
+//关机程序：运行起来电脑就会在1分钟内关机，如果输入“我是猪”就取消关机
+//c语言提供了一个函数：system()-执行系统命令的
+void case10()
+{
+	char input[50] = { 0 };
+	system("shutdown -s -t 60");//-s:shutdown t:time 60表示秒数，这里的时间的单位是秒
+								//-r:完全关闭并且重新启动计算机  -p关闭本地计算机，没有超时或警告 -h休眠本地计算机 -f:强制关闭正在运行的应用程序而不事先警告用户
+
+again:
+	printf("请注意，您的电脑在1分钟内关机，如果输入；我是猪，就取消关机\n");
+	gets_s(input, 49);
+	if (strcmp(input, "我是猪") == 0)
+	{
+		system("shutdown -a"); //-a:表示取消
+	}
+	else
+	{
+		goto again;
+	}
+}
 
 int main()
 {
@@ -255,7 +328,11 @@ int main()
 	//case3();
 	//case4();
 	//case5();
-	case6();
+	//case6();
+	//case7();
+	//case8();
+	//case9();
+	case10();
 	
 
 	return 0;
