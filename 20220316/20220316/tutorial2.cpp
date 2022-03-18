@@ -353,6 +353,17 @@ int case12(int *p,int value,int size)
 	return 0;
 }
 
+//链式访问
+void case13()
+{
+	int a1;
+	a1=printf("%c\n", 'c');	
+	printf("%d\n", printf("%c\n", 'c') );
+	printf("%d", printf("%d", printf("%d", 43)));
+	//返回的值是int，返回的是字符的个数
+}
+
+
 int main()
 {
 	//case1();
@@ -369,6 +380,7 @@ int main()
 	//case11();
 
 	//case12();
+
 // 	int arr[20] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};	
 // 	int value;
 // 	printf("input the value:\n");
@@ -386,9 +398,9 @@ int main()
 // 		printf("the key is %d\n", key);
 // 	}
 
+	case13();
 
+	int Add(int x, int y);//函数声明
 
-
-
-	return 0;
+		return 0;
 }
