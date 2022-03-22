@@ -1,3 +1,2 @@
 ﻿  recur.c
-f:\to work\2 c\2 c code\function\recursive\recur.c(161): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“double”
   recursive.vcxproj -> F:\to work\2 C\2 C code\function\Debug\recursive.exe

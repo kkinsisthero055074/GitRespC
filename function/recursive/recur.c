@@ -86,6 +86,57 @@ int frog(int n)
 	}	
 }
 
+//1-100中出现的9的次数
+void nine()
+{
+	int num = 0;
+	for (int i = 1; i < 101; i++)
+	{
+		if (i / 10 == 9) //10位
+		{
+			num++;
+		}
+		if (i % 10 == 9) //各位
+		{
+			num++;
+		}
+	}
+	
+	printf("the total number is: %d\n", num);
+
+}
+
+//计算公式1-1/2+1/3-1/4.........-1/100
+void forma()
+{
+	double sum = 0;
+
+	for (int i = 1; i < 101; i++)
+	{
+		if (i % 2)
+		{
+			sum = sum + 1.0 / i;//注意要想输出的结果为小说必须写成：1.0/i；
+		}
+		else
+		{
+			sum = sum - 1.0 / i;
+		}
+	}
+	printf("the result is %lf\n", sum);
+}
+
+//屏幕上输入乘法口诀
+void multi()
+{
+	for (int i = 1; i < 10; i++)
+	{
+		for (int j = 1; j <= i; j++)
+		{
+			printf("%d * %d = %d\t", j, i, i*j);
+		}
+		printf("\n");
+	}
+}
 
 int main()
 {
@@ -128,7 +179,9 @@ int main()
 // 	int num=frog(n);
 // 	printf("the result is %d\n", num);
 
-
+	//nine();
+	//forma();
+	multi();
 	   	  
 	return 0;
 }
