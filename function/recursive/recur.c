@@ -86,6 +86,53 @@ int frog(int n)
 	}	
 }
 
+//递归函数 7： 字符串逆向排序
+int reverse_string(char* string)
+{
+	int num = 0;
+	if (*string == '\0')
+	{
+		return 0;
+	}
+	
+	else
+	{
+		return(reverse_string(string+1)+1);
+	}
+
+	return num;
+}
+
+
+//递归函数 8：求一个数的没位数之和
+int recur_sum(int num)
+{
+	if (num<10)
+	{
+		return num;
+	}
+	else
+	{
+		return num % 10 + recur_sum(num / 10);
+
+	}
+}
+
+
+//递归函数 9：编写一个函数实现n的k次方，使用递归实现
+int recur_fac(int n,int k)
+{
+	if (k == 0)
+	{
+		return 1;
+	}
+	else
+	{
+		return recur_fac(n, k - 1)*n;
+	}
+}
+
+
 //1-100中出现的9的次数
 void nine()
 {
@@ -181,7 +228,31 @@ int main()
 
 	//nine();
 	//forma();
-	multi();
+	//multi();
+
+// 	char str[] = "1234567";	
+// 	int length = reverse_string(str);
+// 
+// 	char c;
+// 	for (int i = 1; i < length / 2+1 ; i++)
+// 	{
+// 		c = *(str + i - 1);
+// 		*(str + i - 1) = *(str + length - 1 - i + 1);
+// 		*(str + length - 1 - i + 1) = c;
+// 	}
+// 	printf("%s\n", str);
+
+// 	int x;
+// 	printf("input the value of x：\n");
+// 	scanf_s("%d", &x);
+// 	printf("the total sum of x is %d\n", recur_sum(x));
+	
+	int n, k;
+	printf("input n and k\n");
+	scanf_s("%d %d", &n, &k);
+	printf("the result is %d\n", recur_fac(n, k));
+
+
 	   	  
 	return 0;
 }
