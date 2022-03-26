@@ -1,4 +1,3 @@
-﻿  game.c
-  test.c
-  正在生成代码...
+﻿  test.c
+f:\to work\2 c\2 c code\game\game1 threepieces\test.c(65): warning C4047: “==”:“int”与“char [2]”的间接级别不同
   game1 threePieces.vcxproj -> F:\to work\2 C\2 C code\Game\Debug\game1 threePieces.exe

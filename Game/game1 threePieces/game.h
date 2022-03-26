@@ -1,5 +1,10 @@
 #pragma once
 #include <stdio.h>
+//Ëæ»ú±äÁ¿Ëæ×ÅÊ±¼ä¶ø±ä»¯
+#include <stdlib.h>
+#include <time.h>
+
+
 //·ûºÅ¶¨Òå
 #define ROW 3
 #define COL 3
@@ -10,3 +15,12 @@ void InitBoard(char arr[ROW][COL], int row, int col);  //Êı×éÖĞĞĞ¿ÉÒÔÊ¡ÂÔ£¬µ«ÊÇÁ
 
 //´òÓ¡ÆåÅÌ
 void DisplayBoard(char arr[ROW][COL], int row,int col);
+
+//Íæ¼ÒÏÂÆå
+void PlayerMover(char board[ROW][COL],int row,int col);
+
+//µçÄÔÏÂÆå
+void ComputerMove(char board[ROW][COL], int row, int col);
+
+//ÅĞ¶ÏÊÇ·ñÓ®ÁËÓÎÏ· 1Íæ¼ÒÓ®* 2µçÄÔÓ®# 3Æ½¾ÖQ 4ÓÎÏ·¼ÌĞøC
+char IsWin(char board[ROW][COL],int row,int col);
