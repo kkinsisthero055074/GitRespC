@@ -103,96 +103,161 @@ void FindMine(char mine[ROWS][COLS], char show[ROWS][COLS], int row, int col)
 	//1. 输入排查的坐标
 	int x = 0;
 	int y = 0;
-	int win = 0;
+	int win = 0;	
+	int select = 0;
 	
 
 	while (win < row*col - EASY_COUNT)
 	{
-		printf("请输入要排查的坐标：\n");
-		scanf_s("%d %d", &x, &y);
+		printf("1. 输入坐标，2. 输入坐标标记雷 3.输入坐标取消标记雷\n");
+		scanf_s("%d", &select);
 
-		//1.1 判断输入的坐标是否合法
-		if (x >= 1 && x <= row && y >= 1 && y <= col)
+		if (select == 1)
 		{
-			if (mine[x][y]=='1')
+			scanf_s("%d %d", &x, &y);
+
+			//1.1 判断输入的坐标是否合法
+			if (x >= 1 && x <= row && y >= 1 && y <= col)
 			{
-				printf("很遗憾，你被炸死了！");
-				DisplayBoard(mine, row, col);
-				break;
+				if (mine[x][y] == '1')
+				{
+					printf("很遗憾，你被炸死了！");
+					DisplayBoard(mine, row, col);
+					break;
+				}
+				else
+				{
+					//不是雷的情况，统计x,y坐标周围有几个雷
+					int count = get_mine_count(mine, x, y);
+					show[x][y] = count + '0';
+					//显示排查出的信息
+					DisplayBoard(show, row, col);
+
+					if (count == 0)
+					{
+						printf("返回值为0！\n");
+						//1.1如果返回的是0，那么显示周边所有的信息
+						//1.1.1 下面一行	
+						if (x - 1 > 0)
+						{
+							if (y - 1 > 0)
+							{
+								count = get_mine_count(mine, x - 1, y - 1);
+								show[x - 1][y - 1] = count + '0';
+							}
+
+							count = get_mine_count(mine, x - 1, y);
+							show[x - 1][y] = count + '0';
+
+							if (y + 1 <= col)
+							{
+								count = get_mine_count(mine, x - 1, y + 1);
+								show[x - 1][y + 1] = count + '0';
+							}
+						}
+
+						//1.1.2 中间一行
+						if (y - 1 > 0)
+						{
+							count = get_mine_count(mine, x, y - 1);
+							show[x][y - 1] = count + '0';
+						}
+						if (y + 1 <= col)
+						{
+							count = get_mine_count(mine, x, y + 1);
+							show[x][y + 1] = count + '0';
+						}
+
+						//1.1.3 下面一行
+						if (x + 1 <= row)
+						{
+							if (y - 1 > 0)
+							{
+								count = get_mine_count(mine, x + 1, y - 1);
+								show[x + 1][y - 1] = count + '0';
+							}
+
+							count = get_mine_count(mine, x + 1, y);
+							show[x + 1][y] = count + '0';
+
+							if (y + 1 <= col)
+							{
+								count = get_mine_count(mine, x + 1, y + 1);
+								show[x + 1][y + 1] = count + '0';
+							}
+						}
+					}
+					DisplayBoard(show, ROWS, COLS);
+
+
+
+					win++;
+				}
 			}
 			else
 			{
-				//不是雷的情况，统计x,y坐标周围有几个雷
-				int count=get_mine_count(mine,x,y);
-				show[x][y] = count + '0';
-				//显示排查出的信息
-				DisplayBoard(show, row, col);
+				printf("坐标不合法！请重新输入\n");
+			}
+		}
 
-				if (count == 0)
+		else if (select ==2 )
+		{
+			scanf_s("%d %d", &x, &y);
+			//输入坐标标记雷
+			if (x >= 1 && x <= row && y >= 1 && y <= col)
+			{
+				if (show[x][y]=='*')
 				{
-					printf("返回值为0！\n");
-					//1.1如果返回的是0，那么显示周边所有的信息
-					//1.1.1 下面一行	
-					if (x - 1 > 0)
-					{
-						if (y - 1 > 0)
-						{
-							count = get_mine_count(mine, x - 1, y - 1);
-							show[x - 1][y - 1] = count + '0';
-						}
-
-						count = get_mine_count(mine, x - 1, y);
-						show[x - 1][y] = count + '0';
-
-						if (y + 1 <= col)
-						{
-							count = get_mine_count(mine, x - 1, y + 1);
-							show[x - 1][y + 1] = count + '0';
-						}
-					}
-
-					//1.1.2 中间一行
-					if (y - 1 > 0)
-					{
-						count = get_mine_count(mine, x, y - 1);
-						show[x][y - 1] = count + '0';
-					}
-					if (y + 1 <= col)
-					{
-						count = get_mine_count(mine, x, y + 1);
-						show[x][y + 1] = count + '0';
-					}
-
-					//1.1.3 下面一行
-					if (x + 1 <= row)
-					{
-						if (y - 1 > 0)
-						{
-							count = get_mine_count(mine, x + 1, y - 1);
-							show[x + 1][y - 1] = count + '0';
-						}
-
-						count = get_mine_count(mine, x + 1, y);
-						show[x + 1][y] = count + '0';
-
-						if (y + 1 <= col)
-						{
-							count = get_mine_count(mine, x + 1, y + 1);
-							show[x + 1][y + 1] = count + '0';
-						}
-					}
+					show[x][y] = '#';
+					DisplayBoard(show, row, col);
 				}
-				DisplayBoard(show, ROWS, COLS);
+				else
+				{
+					printf("输入坐标有误！\n");
+				}
+			}
+			else
+			{
+				printf("坐标不合法！请重新输入\n");
+			}
 
-
-
-				win++;
+		}
+		else if (select == 3)
+		{
+		scanf_s("%d %d", &x, &y);
+		//输入坐标取消标记雷
+		if (x >= 1 && x <= row && y >= 1 && y <= col)
+		{
+			if (show[x][y] == '#')
+			{
+				show[x][y] = '*';
+				DisplayBoard(show, row, col);
+			}
+			else
+			{
+				printf("输入坐标有误！\n");
 			}
 		}
 		else
 		{
 			printf("坐标不合法！请重新输入\n");
 		}
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	}
 	if (win == row * col - EASY_COUNT)
