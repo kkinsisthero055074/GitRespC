@@ -1,4 +1,13 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: 中间目录(Debug\)包含从另一个项目(arithmetic.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
   test.c
 f:\to work\2 c\2 c code\operator\arithmetic\test.c(75): warning C4554: “&”: 检查运算符优先级是否存在的可能的错误；使用括号阐明优先级
+f:\to work\2 c\2 c code\operator\arithmetic\test.c(203): warning C4778: “printf”: 格式字符串“%l\n”未终止
+f:\to work\2 c\2 c code\operator\arithmetic\test.c(203): warning C4474: printf: 格式字符串中传递的参数太多
+  f:\to work\2 c\2 c code\operator\arithmetic\test.c(203): note: 占位符和其参数预计 0 可变参数，但提供的却是 1 参数
+f:\to work\2 c\2 c code\operator\arithmetic\test.c(205): warning C4778: “printf”: 格式字符串“%l\n”未终止
+f:\to work\2 c\2 c code\operator\arithmetic\test.c(205): warning C4474: printf: 格式字符串中传递的参数太多
+  f:\to work\2 c\2 c code\operator\arithmetic\test.c(205): note: 占位符和其参数预计 0 可变参数，但提供的却是 1 参数
+f:\to work\2 c\2 c code\operator\arithmetic\test.c(207): warning C4778: “printf”: 格式字符串“%l\n”未终止
+f:\to work\2 c\2 c code\operator\arithmetic\test.c(207): warning C4474: printf: 格式字符串中传递的参数太多
+  f:\to work\2 c\2 c code\operator\arithmetic\test.c(207): note: 占位符和其参数预计 0 可变参数，但提供的却是 1 参数
   arithmetic.vcxproj -> F:\to work\2 C\2 C code\operator\Debug\operator.exe
