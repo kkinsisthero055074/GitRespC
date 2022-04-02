@@ -253,9 +253,31 @@ void case10()
 	//运行结果为12，不同编译器输出的结果可能不一样
 	//vs中可以认为由复杂到简单 即：（）+（）+（）
 
-
+	/*
+	char acX[]="abcde";
+	char acY{}={'a','b','c','d','e'};
+	认为acX数组的长度是大于acY的长度（不考虑输出结果）
+	*/
 
 }
+//11 对数组进行逆置
+void reverse(int arr[], int size)
+{
+	int left = 0;
+	int right = size - 1;
+	int temp;
+	while (right > left)
+	{
+		temp = arr[left];
+		arr[left] = arr[right];
+		arr[right] = temp;
+		right--;
+		left++;
+	}
+
+}
+
+
 
 int main()
 {
@@ -268,7 +290,17 @@ int main()
 	//logic();
 	//dot();
 	//str();
-	case10();
+	//case10();
+
+	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+	int size = sizeof(arr) / sizeof(arr[0]);
+	reverse(arr, size);
+	for (int i = 0; i < size; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+
 	
 
 	return 0;
