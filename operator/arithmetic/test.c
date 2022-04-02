@@ -158,7 +158,13 @@ void str()
 }
 
 
-//10 整型提升
+//10 整型提升以及操作符优先级
+int fun()
+{
+	static int count = 1;
+	return ++count;
+}
+
 void case10()
 {
 // 	//char和short类型在内存中分别占1个字节和2个字节，但是计算的时候占4个字节（需要整型提升），%d显示的时候也是四个字节
@@ -197,24 +203,56 @@ void case10()
 // // 	//无符号的整型提升，高位补0
 
 
-	char a = 0xb6;
-	short b = 0xb600;
-	int c = 0xb6000000;
-	int d = 0xb600-16*16*16*8;
-	if (a == 0xb6)//char a超过16*8=128整型提升后就会变为负数
-		printf("a");
-	if (b == 0xb600)//int b超过16*16*16*8，整型提升后就会编程负数
-		printf("b");
-	if (c == 0xb6000000)
-		printf("c");
-	//所以结果只是输出c,a和b不输出
-	printf("\n%d\n", d);//16进制输出的格式为%x
+// 	char a = 0xb6;
+// 	short b = 0xb600;
+// 	int c = 0xb6000000;
+// 	int d = 0xb600-16*16*16*8;
+// 	if (a == 0xb6)//char a超过16*8=128整型提升后就会变为负数
+// 		printf("a");
+// 	if (b == 0xb600)//int b超过16*16*16*8，整型提升后就会编程负数
+// 		printf("b");
+// 	if (c == 0xb6000000)
+// 		printf("c");
+// 	//所以结果只是输出c,a和b不输出
+// 	printf("\n%d\n", d);//16进制输出的格式为%x
+// 
+// 	char c2 = 1;
+// 	printf("%u\n", sizeof(c2));
+// 	printf("%u\n", sizeof(+c2));
+// 	printf("%u\n", sizeof(-c2));
+// 	//输出结果为1 4 4（因为+C2整型提升了）
 
-	char c2 = 1;
-	printf("%u\n", sizeof(c2));
-	printf("%u\n", sizeof(+c2));
-	printf("%u\n", sizeof(-c2));
-	//输出结果为1 4 4
+	/*
+	long double
+	double
+	float
+	unsigned long int
+	long int
+	unsigned int
+	int	
+	*/
+	/*
+	表达式1
+	a*b+c*d+e*f
+	*的优先级比+高，但是不能决定第三个*比第一个+优先执行，在不同的编译器中可能会出现不同的结果
+
+	表达式2
+	c + -c;
+	--的优先级高于+，但是不能决定第一个c在--之前还是在--之后，在不同的编译器中可能会出现不同的结果
+		
+	*/
+
+	int answer;
+	answer = fun() - fun()*fun();
+	printf("%d\n", answer);
+	//运行结果为-10，在其他编译器中可能出现不停结果
+
+	int i = 1;
+	int ret = (++i) + (++i) + (++i);
+	printf("%d\n", ret);
+	//运行结果为12，不同编译器输出的结果可能不一样
+	//vs中可以认为由复杂到简单 即：（）+（）+（）
+
 
 
 }
