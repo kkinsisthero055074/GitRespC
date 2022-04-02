@@ -196,6 +196,27 @@ void case10()
 // // 
 // // 	//无符号的整型提升，高位补0
 
+
+	char a = 0xb6;
+	short b = 0xb600;
+	int c = 0xb6000000;
+	int d = 0xb600-16*16*16*8;
+	if (a == 0xb6)//char a超过16*8=128整型提升后就会变为负数
+		printf("a");
+	if (b == 0xb600)//int b超过16*16*16*8，整型提升后就会编程负数
+		printf("b");
+	if (c == 0xb6000000)
+		printf("c");
+	//所以结果只是输出c,a和b不输出
+	printf("\n%d\n", d);//16进制输出的格式为%x
+
+	char c2 = 1;
+	printf("%u\n", sizeof(c2));
+	printf("%u\n", sizeof(+c2));
+	printf("%u\n", sizeof(-c2));
+	//输出结果为1 4 4
+
+
 }
 
 int main()
