@@ -78,6 +78,26 @@ void poiter_cal()
 }
 
 
+//6 指针与数组
+void arr()
+{
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	printf("%d\n", arr[3]);
+	printf("%d\n", 3[arr]);
+	printf("%d\n", *(arr+3));
+	//arr[3]会被编译成*(arr+3)=*(3+arr),所以3[arr]也成立，[]只是个操作符
+	
+}
+
+//7 二级指针
+void doub()
+{
+	int a = 10;
+	int* pa = &a;//一级指针
+	int** ppa = &pa;//二级指针
+	int* pch[3] = { NULL,NULL,NULL };//指针数组
+
+}
 
 int main()
 {
@@ -85,7 +105,9 @@ int main()
 	//case2();
 	//cal();
 	//sub();
-	poiter_cal();
+	//poiter_cal();
+	//arr();
+	doub();
 
 
 	return 0;
