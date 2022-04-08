@@ -1,2 +1,3 @@
 ﻿  test.c
+f:\to work\2 c\2 c code\struct\struct\test.c(69): warning C4554: “&”: 检查运算符优先级是否存在的可能的错误；使用括号阐明优先级
   struct.vcxproj -> F:\to work\2 C\2 C code\struct\Debug\struct.exe

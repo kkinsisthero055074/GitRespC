@@ -60,6 +60,82 @@ size_t my_strlen(const char*  dest)
 	return num;
 }
 
+//5. 统计二进制中1的个数
+size_t bi_num(int a)
+{
+	int num = 0;
+	for (int i = 0; i < 32; i++)
+	{
+		if (a & 1 == 1)
+		{
+			num++;
+		}
+		a=a >> 1;
+	}
+	return num;
+
+}
+
+//6. 最小公倍数
+int least_common_multi(int a,int b)
+{
+	int max = (a > b) ? a : b;
+	int multi = 0;
+	for (int i = 1;; i++)
+	{
+		if (a*i%b == 0)
+		{
+			multi = a * i;
+			break;
+		}
+	}
+	return multi;
+}
+//7. 将一句话倒置，标点不倒置,输入长度不超过100
+void upside_down(char* p)
+{
+	int arr[60] = {0};
+	int num = -1;
+
+	for (int i=0;i<100;i++)
+	{
+		if (*(p + i) == ' ')
+		{
+			num++;
+			arr[num] = i;
+		}
+		else if (*(p+i)=='\0')
+		{
+			num++;
+			arr[num] = i;
+			break;
+		}
+	}
+
+	printf("%d\n", num);
+	printf("%d\n", arr[num - 1]);
+	printf("%d\n", arr[num ]);
+
+	while (num)
+	{
+		for (int i=arr[num-1]+1;i<arr[num];i++)
+		{
+			printf("%c", *(p+i));
+		}
+		printf(" ");
+		num--;
+	}
+	for (int i = 0; i < arr[0]; i++)
+	{
+		printf("%c", *(p + i));
+	}
+
+
+
+
+
+}
+
 
 int main()
 {
@@ -82,10 +158,35 @@ int main()
 // 	char arr2[] = "hello123456789";
 // 	printf("%s\n", my_strcpy(arr, arr2));
 
-	char szInput[256];
-	printf("Enter a sentence:");
-	scanf_s("%s", szInput, 256);
-	printf("The sentence entered is %u characters long.\n", my_strlen(szInput));
+// 	char szInput[256];
+// 	printf("Enter a sentence:");
+// 	scanf_s("%s", szInput, 256);
+// 	printf("The sentence entered is %u characters long.\n", my_strlen(szInput));
+// 	printf("input a num:\n");
+// 	int a = 0;
+// 	int b = 0;
+// 	printf("input the number of a and b:\n");
+// 	scanf_s("%d %d", &a, &b);
+// 	int c = a ^ b;
+// 	printf("numbers of differenet bit is %d\n", bi_num(c));
+
+// 	//错误代码演示
+// 	int i = 1;
+// 	int ret = (++i) + (++i) + (++i); 
+// 	//case6:
+// 	int a, b;
+// 	printf("input a and b:\n");
+// 	scanf_s("%d %d", &a, &b);
+// 	printf("the least common multi of a and b is %d\n", least_common_multi(a, b));
+
+	char arr[101] = { 0 };
+	printf("input a sentence:\n");
+	//scanf_s("%[^\n]", arr, 100);//1.1 输入空格的字符串
+	gets_s(arr, 100);//1.2 用gets函数输入含有空格的字符串
+	printf("%s", arr);
+	//upside_down(arr);
+	
+	
 
 	return 0;	
 	
