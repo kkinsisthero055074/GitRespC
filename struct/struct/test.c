@@ -179,12 +179,25 @@ int main()
 // 	scanf_s("%d %d", &a, &b);
 // 	printf("the least common multi of a and b is %d\n", least_common_multi(a, b));
 
-	char arr[101] = { 0 };
-	printf("input a sentence:\n");
-	//scanf_s("%[^\n]", arr, 100);//1.1 输入空格的字符串
-	gets_s(arr, 100);//1.2 用gets函数输入含有空格的字符串
-	printf("%s", arr);
-	//upside_down(arr);
+// 	char arr[101] = { 0 };
+// 	printf("input a sentence:\n");
+// 	//scanf_s("%[^\n]", arr, 100);//1.1 输入空格的字符串
+// 	gets_s(arr, 100);//1.2 用gets函数输入含有空格的字符串
+// 	printf("%s", arr);
+// 	//upside_down(arr);
+
+// 	int i = 0;
+// 	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+// 	printf("%p\n", &i);
+// 	printf("%p\n", &arr[9]);
+// 	for (int i = 0; i < 12; i++)
+// 	{
+// 		arr[i] = 0;
+// 		printf("hehe\n");
+// 	}
+// 	//调试中会出现错误：局部变量放在栈里，栈是从高地址开始的
+// 	//如果release版本中编译器会做优化，把i放在arr[]变量的的低地址
+
 	
 	
 
