@@ -132,6 +132,31 @@ void case8()
 	printf("%s", str3);
 }
 
+//字符串数组
+void case9()
+{
+	int a[5] = { 1,2,3,4,5 };
+	int b[] = { 2,3,4,5,6 };
+	int c[] = { 3,4,5,6,7 };
+	int* arr[3] = { a,b,c };
+
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			printf("%d ", *(arr[i] + j));
+			//也可以是下面语句，即：*(arr[i]+j)=arr[i][j]
+			//printf("%d ", arr[i][j]);
+		}
+		printf("\n");
+	}
+
+// 	int* arr[10];//整形指针的数组
+// 	char* arr2[4];//一级字符指针的数组
+// 	char** arr3[5];//二级字符指针的数组
+
+}
+
 
 int main()
 {
@@ -143,7 +168,7 @@ int main()
 	//arr();
 	//doub();
 	//case8();
-
+	case9();
 
 	return 0;
 }
