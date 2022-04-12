@@ -99,6 +99,40 @@ void doub()
 
 }
 
+//8 字符指针
+void case8()
+{
+	char str1[] = "hello world.";
+	char str2[] = "hello world.";
+	char* str3 = "hello world.";
+	//使用这种方式赋值，编译器会认为"hello world."字符串是字符量常量，如果字符串内容一样，会默认是同一个字符串常量,存储在同一个地址，并且字符串常量的值是不能改变的。
+	//定义的时候最好如： const char* str3="hello world."; 防止后边通过指针改变字符串常量的值。
+	char* str4 = "hello world.";
+
+	if (str1==str2)
+	{
+		printf("str1 and str2 are same\n");
+	}
+	else
+	{
+		printf("str1 and str2 are not same\n");
+	}
+
+	if (str3 == str4)
+	{
+		printf("str3 and str4 are same\n");
+	}
+	else
+	{
+		printf("str3 and str4 are not same\n");
+	}
+
+	//*str3 = "123";
+	//因为指针指向字符串常量，会出现错误！
+	printf("%s", str3);
+}
+
+
 int main()
 {
 	//ram();
@@ -107,7 +141,8 @@ int main()
 	//sub();
 	//poiter_cal();
 	//arr();
-	doub();
+	//doub();
+	//case8();
 
 
 	return 0;
