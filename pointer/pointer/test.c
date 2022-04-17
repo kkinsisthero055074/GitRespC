@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 //1 指针占的内存
 void ram()
@@ -132,7 +133,7 @@ void case8()
 	printf("%s", str3);
 }
 
-//字符串数组
+//9. 字符串数组
 void case9()
 {
 	int a[5] = { 1,2,3,4,5 };
@@ -157,6 +158,337 @@ void case9()
 
 }
 
+//10. 数组指针
+void case10()
+{
+	//1. 数组指针的定义
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	int *p = arr; //取的是数组的地址 数组名是首元素的地址
+	int(*pr)[10] = &arr;//[]的优先级高于*
+	//pr就是一个数组指针-其中存放的是数组的指针
+
+	printf("%p\n", arr);
+	printf("%p\n", &arr);
+	printf("%p\n", arr+1);
+	printf("%p\n", &arr+1);
+	//arr和&arr,虽然值是一样的，但是意义不一样，&arr+1和&arr的差值是40
+	//数组名是数组首元素的地址，但是有2个例外：
+	//1.1. sizeof(数组名); 数组名表示是整个数组，计算的是整个数组的大小，单位是字节
+	//1.2. &数组名-数组名表示的是整个数组，取回的是整个数组的地址
+
+	double* d[5];
+	double*(*pd)[5] = &d;//指针数组
+
+	//2.数组指针的使用
+
+	for (int i = 0; i < 10; i++)
+	{
+		printf("%d ", *(*pr + i));
+	}
+	//2.1 可以这样写，但是不建议
+
+	//2.2 int(*parr[10])[5]
+	//parr是一个存储10个数组指针的数组，每个指针指向5个int类型的指针
+
+
+	//3. 数组与指针参数传递
+	//3.1 一维数组传参
+	//int arr[10]={0};test(arr);可以以下面三种方式传递
+	//void test(int arr[]);
+	//void test(int arr[10]);
+	//void test(int *arr);
+
+	//int *arr2[20]={0};test2(arr2);可以以下面两种方式传递
+	//void test2(int *arr[20]);
+	//void test2(int **arr);
+
+	//3.2 二维数组传参
+	//int arr[3][5]={0};test(arr);可以以下面两种方式传递
+	//void test(int arr[3][5]);
+	//void test(int arr[][5]);
+	//void test(int (*parr)[5]);//因为arr此时代表的是一行的地址
+	//总结：二维数组传参，函数形参只能省略第一个[]的数字
+	//因此对一个二维数组，可以不知道多少行，但是必须知道一行多少个元素
+
+
+}
+
+//11.1 二维数组打印的第一种方式
+void print1(int arr[3][4], int r, int c)
+{
+	for (int i = 0; i < r; i++)
+	{
+		for (int j = 0; j < c; j++)
+		{
+			printf("%d ", arr[i][j]);
+			//printf("%d ",*(arr+i*c+j));
+		}
+		printf("\n");
+	}
+}
+
+//11.2 二维数组打印的第二种方式
+void print2(int(*p)[4], int r, int c)
+{
+	for (int i = 0; i < r; i++)
+	{
+		for (int j = 0; j < c; j++)
+		{
+			printf("%d ", *(*(p + i) + j));
+		}
+		printf("\n");
+	}
+}
+
+
+//11. 打印二维数组
+void case11()
+{
+	int arr[3][4] = { {1,2,3,4}, {2,3,4,5}, {3,4,5,6} };
+	
+	//print1(arr, 3, 4);
+	print2(arr, 3, 4);
+	//一维数组的数组名表示的是首元素的地址，二维数组的数组名表示的是第一行的地址
+
+}
+
+//12  大端存储
+void case12()
+{
+	int a = 0x11223344;//十六进制数据表示方法（1个数字表示4位）
+	char *p = (char*)&a;//强制类型转换
+	
+	for (int i = 0; i < 4; i++)
+	{
+		printf("%x ", *(p + i));//十六进制输出
+	}
+	//输入的结果为44 33  22 11 说明存储方式为大端
+
+	*p = 0;
+	printf("%x\n", a);
+}
+//13 int 和 unsigned int 类型进行比较时涉及的类型转换
+int i;//全局变量，不初始化，默认是0
+void case13()
+{
+	i--;
+	//sizeof这操作符，算出的结果的类型是unsigned int
+	//有符号的int和无符号的int比较的时候先转换成无符号的int
+	if (i > sizeof(int))
+		printf(">\n");
+	else
+		printf("<\n");
+}
+
+//14
+void case14()
+{
+	int a = 0;
+	int n = 0;
+	printf("input a and n:\n");
+	scanf_s("%d %d",&a,&n);
+	printf("%d %d\n", a, n);
+	int sum = 0;
+	int num = 0;
+
+	for (int i = 0; i < n; i++)
+	{
+		num = num * 10 + a;		
+		sum = sum + num;
+		
+	}
+	printf("the sum is %d\n",sum);
+}
+int case15A(int a)
+{
+	int bit_num = 0;
+	int num = a;
+	int sum = 0;
+
+	while (1)
+	{
+		bit_num++;
+		num = num / 10;
+
+		if (num == 0)
+		{
+			break;
+		}
+	}
+	
+
+	num = a;
+	for (int i = 0; i < bit_num; i++)
+	{
+		sum = sum + pow((num % 10), bit_num);
+		num = num / 10;
+	}
+	return sum;
+}
+
+//15 打印水仙花数
+void case15()
+{
+
+
+	for (int i = 1; i < 100000; i++)
+	{
+		if (case15A(i) == i)
+			printf("%d ", i);
+
+	}
+}
+
+//案例16
+void case16()
+{
+	unsigned long pulArray[] = { 6,7,8,9,10 };
+	unsigned long *pulPtr;
+	pulPtr = pulArray;
+	*(pulPtr + 3) += 3;
+	printf("%d,%d\n", *pulPtr, *(pulPtr + 3));
+}
+
+//案例17 写一个程序，可以逆序一个字符的内容
+void case17(char* p)
+{
+	char*p0 = p;
+	int num = 0;
+	int left = 0;
+	int right;
+	char temp;
+
+	//统计出字符串中的元素数！num
+	while (1)
+	{
+		if (*p == '\0')
+			break;
+		num++;
+		p++;
+	}
+
+	//将字符串逆序
+	p =p0;
+	right = num - 1;
+	while (left<right)
+	{
+		temp = *(p + left);
+		*(p + left) = *(p + right);
+		*(p + right) = temp;
+		left++;
+		right--;
+	}
+
+}
+
+//案例18
+void case18()
+{
+	char arr[20] = { 0 };
+	for (int i = 0; i < 13; i++)
+	{
+		arr[i] = ' ';
+	}
+
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j <= i; j++)
+		{
+			arr[6 - j] = '*';
+			arr[6 + j] = '*';
+		}
+		printf("%s\n",arr);
+	}
+	arr[0] = arr[12] = '*';
+	printf("%s\n", arr);
+
+	for (int i = 0; i < 6; i++)
+	{
+		for (int j = 0; j <= i; j++)
+		{
+			arr[j] = ' ';
+			arr[12-j] = ' ';
+		}
+		printf("%s\n", arr);
+	}
+
+}
+
+//案例19 
+void case19()
+{
+	//上面
+	for (int i = 0; i < 7; i++)
+	{
+		for (int j = 0; j < 13; j++)
+		{
+			if (j >= 6 - i && j <= 6 + i)
+			{
+				printf(" *");
+			}
+			else
+				printf("  ");
+		}
+		printf("\n");
+	}
+	//下面
+	for (int i=0;i<6;i++)
+	{
+		for (int j = 0; j < 13; j++)
+		{
+			if (j <= i || j>=13-i)
+			{
+				printf("  ");
+			}
+			else
+			{
+				printf(" *");
+			}
+
+		}
+		printf("\n");
+			
+	}
+}
+
+//案例20：一瓶汽水1元，2个空瓶可以换一瓶汽水，给20元可以喝多少汽水
+int  case20(int money)
+{
+	int sum = money;
+	int num = money;
+
+	while (num>1)
+	{
+		sum = sum + num / 2;
+		num = num / 2 + num % 2;
+	}
+	return sum;
+}
+
+//案例21 输入数组：来调整数组中的顺序所有的奇数位于全半部门
+void case21(int* p,int size)
+{
+	int temp;
+	int num = 0;
+	//标记替换等等次数
+	for (int i=0;i<size-num;i++)
+	{
+
+		if (*(p + i) % 2 == 0)
+		{
+			temp = *(p + i);
+			for (int j = i; j < size - 1; j++)
+			{
+				*(p + j) = *(p + j + 1);
+			}
+			*(p + size - 1) = temp;
+			num++;
+			i--;
+		}
+	}
+	
+
+}
 
 int main()
 {
@@ -168,7 +500,43 @@ int main()
 	//arr();
 	//doub();
 	//case8();
-	case9();
+	//case9();
+	//case10();
+	//case11();
+	//case12();
+	//case13();
+	//case14();
+	//case15();
+	//case16();
+	
+// 	char str[200] = { 0 };
+// 	printf("input the string:\n");	
+// 	gets_s(str, 199);
+// 	printf("%s\n", str);
+// 	case17(str);
+// 	printf("the result is %s\n", str);
+	//case18();
+	//case19();
+	
+// 	int money;
+//     printf("input the money:\n");
+//   	scanf_s("%d",&money);
+// 	printf("the total num is %d", case20(money));
+
+	int arr[] = {1,2,3,4,5,6,7,8,9,10,12,14};
+	int size = sizeof(arr) / sizeof(arr[0]);
+	printf("%d\n", size);
+	case21(arr, size);
+	for (int i = 0; i < size; i++)
+	{
+		printf(" %d", arr[i]);
+	}
+
+	
+	
+
+
+	
 
 	return 0;
 }

@@ -1,4 +1,5 @@
 ﻿  test.c
-f:\to work\2 c\2 c code\pointer\pointer\test.c(9): warning C4133: “初始化”: 从“int *”到“double *”的类型不兼容
-f:\to work\2 c\2 c code\pointer\pointer\test.c(26): warning C4133: “初始化”: 从“int *”到“char *”的类型不兼容
+f:\to work\2 c\2 c code\pointer\pointer\test.c(10): warning C4133: “初始化”: 从“int *”到“double *”的类型不兼容
+f:\to work\2 c\2 c code\pointer\pointer\test.c(27): warning C4133: “初始化”: 从“int *”到“char *”的类型不兼容
+f:\to work\2 c\2 c code\pointer\pointer\test.c(323): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
   pointer.vcxproj -> F:\to work\2 C\2 C code\pointer\Debug\pointer.exe
